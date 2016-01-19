@@ -17,7 +17,7 @@ import java.io.File;
 
 public class StartupAdPageActivity extends Activity {
     private final static String ALBUM_PATH
-            = Environment.getExternalStorageDirectory() + "/download/ad.png";
+            = Environment.getExternalStorageDirectory() + "/MFAd/" + Utils.getImgName(AdPreference.getInstance().getStartupAdPage().getPicUrl());
 
     ImageView ivAd;
     TasksCompletedView mTasksView;
