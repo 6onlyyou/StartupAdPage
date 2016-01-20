@@ -13,6 +13,7 @@ import cn.aigestudio.downloader.interfaces.DLTaskListener;
 
 public class MainActivity extends Activity {
 
+
     private String AD_PATH
             = Environment.getExternalStorageDirectory() + "/MFAd/";
 
