@@ -42,7 +42,12 @@ public class StartupAdPageActivity extends Activity {
         if (file.exists()) {
             Bitmap bm = BitmapFactory.decodeFile(ALBUM_PATH);
             //将图片显示到ImageView中
-            ivAd.setImageBitmap(bm);
+            if (bm!=null) {
+                ivAd.setImageBitmap(bm);
+            }else {
+                Utils.deleteFile(ALBUM_PATH);
+//                ivAd.setBackgroundResource(R.mipmap.welcome);
+            }
         }
 
         ivAd.setOnClickListener(new View.OnClickListener() {
