@@ -2,8 +2,13 @@ package org.mf.startupadpage;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.os.Environment;
 import android.os.Handler;
+
+import java.io.File;
 
 public class SplashActivity extends Activity {
 
@@ -26,15 +31,21 @@ public class SplashActivity extends Activity {
     }
 
     private void isFirst() {
-        if (!AdPreference.getInstance().getStartupAdPage().getPicUrl().equals("")) {
-            Intent intent = new Intent(SplashActivity.this,
-                    StartupAdPageActivity.class);
-            startActivity(intent);
+        String AD_PATH
+                = Environment.getExternalStorageDirectory() + "/MFAd/" + Utils.getImgName(AdPreference.getInstance().getStartupAdPage().getPicUrl());
+        File file = new File(AD_PATH);
+        Bitmap bm = BitmapFactory.decodeFile(AD_PATH);
+
+        if (file.exists() && bm != null) {
+            startActivity(new Intent(SplashActivity.this,
+                    StartupAdPageActivity.class));
             finish();
         } else {
-            Intent intent = new Intent(SplashActivity.this,
-                    MainActivity.class);
-            startActivity(intent);
+
+            Utils.deleteFile(AD_PATH);
+
+            startActivity(new Intent(SplashActivity.this,
+                    MainActivity.class));
             finish();
         }
     }
